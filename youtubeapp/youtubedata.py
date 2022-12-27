@@ -1,0 +1,2 @@
+class YoutubeAPI():
+    pass
