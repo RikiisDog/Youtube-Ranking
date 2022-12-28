@@ -1,3 +1,10 @@
+#Byte-compiled / optimized / DLL files
+__pycashe__/
+
+#Environments
 /venv
 .env
-.git
+
+#Django stuff:
+*.log
+db.sqlite3

@@ -27,7 +27,7 @@ class ChannelID(models.Model):
         )
 
     def __str__(self):
-        return self.channel_name
+        return self.channel_id
 
 class Log(models.Model):
     enter = models.CharField(max_length=200)
