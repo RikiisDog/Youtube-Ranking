@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import YoutubeData, Log
+from .models import ChannelID, Data, Log
 
 # Register your models here.
-admin.site.register(YoutubeData)
+admin.site.register(ChannelID)
+admin.site.register(Data)
 admin.site.register(Log)

@@ -5,4 +5,5 @@ app_name = 'youtubeapp'
 
 urlpatterns = [
     path('index/', Test.as_view(), name='test'),
+    path('detail/<int:pk>', Test.as_view(), name='detail')
 ]
