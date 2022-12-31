@@ -1,10 +1,17 @@
-#Byte-compiled / optimized / DLL files
-__pycashe__/
+#Byte-compiled / optimized / DLL files:
+__pycache__/
+__pycache__
 
-#Environments
+#Environments:
 /venv
 .env
 
 #Django stuff:
 *.log
 db.sqlite3
+
+#test stuff:
+test.py
+
+#temp
+temp/
