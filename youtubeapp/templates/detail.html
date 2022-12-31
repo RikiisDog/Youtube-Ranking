@@ -2,13 +2,13 @@
 {% load static %}
 
 {% block customcss %}
-<link rel='stylesheet' type='text/css' href="{% static '\youtubeapp\detail.css' %}">
+    <link rel='stylesheet' type='text/css' href="{% static '\youtubeapp\detail.css' %}">
 {% endblock customcss %}
 
 {% block header %}
-<nav class="navbar navbar-success bg-success mb-3">
-    <a href="{% url 'youtubeapp:index' %}" class="btn btn-success btn-lg">YouTubeランキング</a>
-</nav>
+    <nav class="navbar navbar-success bg-success mb-3">
+        <a href="{% url 'youtubeapp:index' %}" class="btn btn-success btn-lg">YouTubeランキング</a>
+    </nav>
 {% endblock header %}
 
 {% block content %}
@@ -20,54 +20,51 @@
                 <img src="{{ item.thumbnail }}" width="200px" height="200px" alt="" class="img-thumbnail">
             </div>
             <div class="col-8">
-            <div class='card' style="width: 550px">
-            <h2><a href= "{{ item.channel_url }}">{{ item.channel_name }}</a></h2>
-            <h4><span>登録者数</span>:{{ item.subscriber_count }}</h4>
-            <h4><span>総視聴回数</span>:{{ item.view_count }}</h4>
-            <h4><span>総動画本数</span>:{{ item.video_count}}</h4>
-            <h4><span>開設日</span>:{{ item.published_at }}</h4>
-            <h4><span><a href= "https://twitter.com/hikakin">Twitter</a>
+                <div class='card' style="width: 550px">
+                <h2><a href= "{{ item.channel_url }}">{{ item.channel_name }}</a></h2>
+                <h4><span>登録者数</span>:{{ item.subscriber_count }}</h4>
+                <h4><span>総視聴回数</span>:{{ item.view_count }}</h4>
+                <h4><span>総動画本数</span>:{{ item.video_count}}</h4>
+                <h4><span>開設日</span>:{{ item.published_at }}</h4>
+                <h4><span><a href= "https://twitter.com/hikakin">Twitter</a>
+                </div>
             </div>
         </div>
-        </div>
-        
         <div class="row">
-          <h3>人気の動画</h3>
-              <div class="col">
-                  <div class="ratio ratio-16x9">
-                      <iframe src="{{ item.video }}" title="YouTube video" allowfullscreen></iframe>
-              </div>
-          </div>
-          <div class="col">
-              <div class="ratio ratio-16x9">
-                  <iframe src="{{ item.video }}" title="YouTube video" allowfullscreen></iframe>
-              </div>
-          </div>
-          <div class="col">
-              <div class="ratio ratio-16x9">
-                  <iframe src="{{ item.video }}" title="YouTube video" allowfullscreen></iframe>
-              </div>
-          </div>
-          <h1></h1>
-          <div class="col">
-            <div class="ratio ratio-16x9">
-                <iframe src="{{ item.video }}" title="YouTube video" allowfullscreen></iframe>
+            <h3>人気の動画</h3>
+            <div class="col">
+                <div class="ratio ratio-16x9">
+                    <iframe src="{{}}" title="YouTube video" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="col">
+                <div class="ratio ratio-16x9">
+                    <iframe src="{{ item.video }}" title="YouTube video" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="col">
+                <div class="ratio ratio-16x9">
+                    <iframe src="{{ item.video }}" title="YouTube video" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="col">
+                <div class="ratio ratio-16x9">
+                    <iframe src="{{ item.video }}" title="YouTube video" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="col">
+                <div class="ratio ratio-16x9">
+                    <iframe src="{{ item.video }}" title="YouTube video" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="col">
+                <div class="ratio ratio-16x9">
+                    <iframe src="{{ item.video }}" title="YouTube video" allowfullscreen></iframe>
+                </div>
+            </div>
+            <h2>グラフ</h2>
+            {% comment %} <img src="img\graph03_oresen01rei (1).png" alt="" class="img-thumbnail"> {% endcomment %}
         </div>
-    </div>
-    <div class="col">
-        <div class="ratio ratio-16x9">
-            <iframe src="{{ item.video }}" title="YouTube video" allowfullscreen></iframe>
-        </div>
-    </div>
-    <div class="col">
-        <div class="ratio ratio-16x9">
-            <iframe src="{{ item.video }}" title="YouTube video" allowfullscreen></iframe>
-        </div>
-    </div>
-        <h2>グラフ</h2>
-        {% comment %} <img src="img\graph03_oresen01rei (1).png" alt="" class="img-thumbnail"> {% endcomment %}
-    </div>
+    </section>
 {% endfor %}
-</div>
-</section>
 {% endblock content %}
