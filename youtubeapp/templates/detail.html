@@ -13,10 +13,10 @@
 {% endblock header %}
 
 {% block content %}
-    <section class="container py-3 contents">
+    <section class="container py-3">
         <div class="row">
             <div class="col-lg-4">
-                <img src="{{ channel.thumbnail }}" width="253px" height="229px" alt="" class="img-thumbnail">
+                <img decoding='async' loding='lazy' src="{{ channel.thumbnail }}" width="253px" height="229px" alt="" class="img-thumbnail d-block mx-auto">
             </div>
             <div class="col-lg-8">
                 <div class='card h-100'>
@@ -36,7 +36,7 @@
                     <div class="card mx-lg-4 mx-md-0">
                         <a target="_blank" href="{{ video.video_url1 }}">
                             <div class="card border-0">
-                        <img class="card-img-top" src="{{ video.video_thumbnail1 }}" alt="動画サムネイル">
+                        <img ecoding='async' loding='lazy' class="card-img-top" src="{{ video.video_thumbnail1 }}" alt="動画サムネイル">
                                 <div class="card-img-overlay">
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                     <div class='card h-100 mx-lg-4 mx-md-0'>
                         <a target="_blank" href="{{ video.video_url2 }}">
                             <div class="card border-0">
-                        <img class="card-img-top" src="{{ video.video_thumbnail2 }}" alt="動画サムネイル">
+                        <img ecoding='async' loding='lazy' class="card-img-top" src="{{ video.video_thumbnail2 }}" alt="動画サムネイル">
                                 <div class="card-img-overlay">
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                     <div class='card h-100 mx-lg-4 mx-md-0'>
                         <a target="_blank" href="{{ video.video_url3 }}">
                             <div class="card border-0">
-                        <img class="card-img-top" src="{{ video.video_thumbnail3 }}" alt="動画サムネイル">
+                        <img ecoding='async' loding='lazy' class="card-img-top" src="{{ video.video_thumbnail3 }}" alt="動画サムネイル">
                                 <div class="card-img-overlay">
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
                     <div class='card h-100 mx-4'>
                         <a target="_blank" href="{{ video.video_url4 }}">
                             <div class="card border-0">
-                        <img class="card-img-top" src="{{ video.video_thumbnail4 }}" alt="動画サムネイル">
+                        <img ecoding='async' loding='lazy' class="card-img-top" src="{{ video.video_thumbnail4 }}" alt="動画サムネイル">
                                 <div class="card-img-overlay">
                                 </div>
                             </div>
@@ -140,7 +140,7 @@
                     <div class='card h-100 mx-4'>
                         <a target="_blank" href="{{ video.video_url5 }}">
                             <div class="card border-0">
-                        <img class="card-img-top" src="{{ video.video_thumbnail5 }}" alt="動画サムネイル">
+                        <img ecoding='async' loding='lazy' class="card-img-top" src="{{ video.video_thumbnail5 }}" alt="動画サムネイル">
                                 <div class="card-img-overlay">
                                 </div>
                             </div>
@@ -166,7 +166,7 @@
                     <div class='card h-100 mx-4'>
                         <a target="_blank" href="{{ video.video_url6 }}">
                             <div class="card border-0">
-                        <img class="card-img-top" src="{{ video.video_thumbnail6 }}" alt="動画サムネイル">
+                        <img ecoding='async' loding='lazy' class="card-img-top" src="{{ video.video_thumbnail6 }}" alt="動画サムネイル">
                                 <div class="card-img-overlay">
                                 </div>
                             </div>
@@ -188,18 +188,9 @@
                     </div>
                 </div>
             </div>
-            <h2>グラフ</h2>
-        </div>        {% comment %} <img src="img\graph03_oresen01rei (1).png" alt="" class="img-thumbnail"> {% endcomment %}
+        </div>
     </section>
 {% endblock content %}
-
-{%block footer%}
-    <footer class="footer mt-auto py-3 bg-success">
-        <div class="container">
-            <div class="text-white my-2">ここには固定フッタのコンテンツを配置。</div>
-        </div>
-    </footer>
-{%endblock footer%}
 
 {% block footer %}
     <footer id="footer" class="footer pt-3 pb-1 bg-success " style="top: 0px;">
