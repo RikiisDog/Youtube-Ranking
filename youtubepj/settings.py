@@ -9,7 +9,7 @@ env.read_env('.env')
 #Required active 'Mac OS'
 if os.name == 'posix':
     import pymysql
-    pymysql.install_asMySQLdb()
+    pymysql.install_as_MySQLdb()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
