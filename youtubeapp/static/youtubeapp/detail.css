@@ -20,3 +20,7 @@ span {
     display: inline-block;
     width:6em;
 }
+
+.float-right {
+    float:  right;               /* 要素を右に回り込ませる */
+}

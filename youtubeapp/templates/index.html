@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block customcss %}
     <link rel='stylesheet' type='text/css' href="{% static '\youtubeapp\style.css' %}">
@@ -27,12 +28,12 @@
             </thead>
             <tbody>
                 <tr>
-                {% for item in youtubedata %}
+                {% for item in channel %}
                     <th scope="row">{{ forloop.counter }}</th>
                         <td width="60px"><img decoding='async' loding='lazy' src="{{ item.thumbnail }}" width="60px" height="60px" alt="画像が読み込めません"></td>
-                        <td><a href="{{ item.channel_url }}" class="widelink">{{ item.channel_name }}</a></td>
-                        <td>{{ item.registrant_num }}</td>
-                        <td>Apex</td>
+                        <td><a href="{% url 'youtubeapp:detail' item.pk %}" class="widelink">{{ item.channel_name }}</a></td>
+                        <td>{{ item.subscriber_count|intcomma }} 人</td>
+                        <td>{{ item.get_category_display }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

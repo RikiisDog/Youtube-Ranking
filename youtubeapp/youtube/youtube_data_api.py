@@ -29,7 +29,7 @@ class YoutubeApiClient():
         channel_list = self.__client.channels().list(
             part = 'snippet,statistics',
             id = self.channel_id,
-            fields = 'items(id,snippet(title,publishedAt,thumbnails(default(url))),\
+            fields = 'items(id,snippet(title,publishedAt,thumbnails(high(url))),\
             statistics(videoCount,viewCount,subscriberCount))'
             ).execute()
 
@@ -38,9 +38,9 @@ class YoutubeApiClient():
         statistics = channel['statistics']
 
         #チャンネル開設日の書式変更
-        date_iso = snippet['publishedAt']
-        date_conv = datetime.strptime(date_iso, '%Y-%m-%dT%H:%M:%S.%f%z')
-        published_at = date_conv.strftime('%Y年%m月%d日')
+        # date_iso = snippet['publishedAt']
+        # date_conv = datetime.strptime(date_iso, '%Y-%m-%dT%H:%M:%SZ')
+        # published_at = date_conv.strftime('%Y年%m月%d日')
 
         #チャンネルURL取得
         channel_url = f"https://www.youtube.com/channel/{channel['id']}"
@@ -49,8 +49,8 @@ class YoutubeApiClient():
             'id': channel['id'],#チャンネルID
             'title': snippet['title'],#チャンネル名
             'channel_url': channel_url,#チャンネルURL
-            'thumbnail': snippet['thumbnails']['default']['url'],#チャンネルサムネイル
-            'published_at': published_at,#チャンネル開設日
+            'thumbnail': snippet['thumbnails']['high']['url'],#チャンネルサムネイル
+            'published_at': snippet['publishedAt'],#チャンネル開設日
             'subscriber_count': statistics['subscriberCount'],#チャンネル登録者数
             'video_count': statistics['videoCount'],#総動画本数
             'view_count': statistics['viewCount'],#総視聴回数
@@ -89,17 +89,17 @@ class YoutubeApiClient():
             snippet = item['snippet']
             statistics = item['statistics']
 
-            #チャンネル開設日の書式変更
-            date_iso = snippet['publishedAt']
-            date_conv = datetime.strptime(date_iso, '%Y-%m-%dT%H:%M:%SZ')
-            published_at = date_conv.strftime('%Y年%m月%d日')
+            #動画アップロード日の書式変更
+            # date_iso = snippet['publishedAt']
+            # date_conv = datetime.strptime(date_iso, '%Y-%m-%dT%H:%M:%SZ')
+            # published_at = date_conv.strftime('%Y年%m月%d日')
 
             videos.append({
-                'title': snippet['title'],
-                'url': (url + video_id[i]),
-                'thumbnail': snippet['thumbnails']['default']['url'],
-                'view_count': statistics['viewCount'],
-                'published_at': published_at
+                'title': snippet['title'],#動画タイトル
+                'url': (url + video_id[i]),#動画URL
+                'thumbnail': snippet['thumbnails']['high']['url'],#動画サムネイル
+                'view_count': statistics['viewCount'],#動画視聴回数
+                'published_at': snippet['publishedAt']#動画アップロード日
             })
 
         return videos

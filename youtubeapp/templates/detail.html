@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block customcss %}
     <link rel='stylesheet' type='text/css' href="{% static '\youtubeapp\detail.css' %}">
@@ -7,64 +8,195 @@
 
 {% block header %}
     <nav class="navbar navbar-success bg-success mb-3">
-        <a href="{% url 'youtubeapp:index' %}" class="btn btn-success btn-lg">YouTubeランキング</a>
+        <a href="{% url 'youtubeapp:index' %}" class="btn btn-success btn-lg"> YouTubeランキング</a>
     </nav>
 {% endblock header %}
 
 {% block content %}
-
-{% for item in youtubedata %}
     <section class="container py-3 contents">
         <div class="row">
-            <div class=col-4>
-                <img src="{{ item.thumbnail }}" width="200px" height="200px" alt="" class="img-thumbnail">
+            <div class="col-lg-4">
+                <img src="{{ channel.thumbnail }}" width="253px" height="229px" alt="" class="img-thumbnail">
             </div>
-            <div class="col-8">
-                <div class='card' style="width: 550px">
-                <h2><a href= "{{ item.channel_url }}">{{ item.channel_name }}</a></h2>
-                <h4><span>登録者数</span>:{{ item.subscriber_count }}</h4>
-                <h4><span>総視聴回数</span>:{{ item.view_count }}</h4>
-                <h4><span>総動画本数</span>:{{ item.video_count}}</h4>
-                <h4><span>開設日</span>:{{ item.published_at }}</h4>
-                <h4><span><a href= "https://twitter.com/hikakin">Twitter</a>
+            <div class="col-lg-8">
+                <div class='card h-100'>
+                <h2><a href= "{{ channel.channel_url }}">{{ channel.channel_name }}</a></h2>
+                <h4><span class="bg-success text-white text-center rounded me-2">登録者数</span>{{ channel.subscriber_count|intcomma }} 人</h4>
+                <h4><span class="bg-primary text-white text-center rounded me-2">総視聴回数</span>{{ channel.view_count|intcomma }} 回</h4>
+                <h4><span class="bg-warning text-white text-center rounded me-2">総動画本数</span>{{ channel.video_count|intcomma }} 本</h4>
+                <h4><span class="bg-danger text-white text-center rounded me-2">開設日</span>{{ channel.published_at }}</h4>
+                <h4><span><a href= "{{ channel.twitter_url }}">Twitter</a>
                 </div>
             </div>
         </div>
+        <p></p>
         <div class="row">
-            <h3>人気の動画</h3>
-            <div class="col">
-                <div class="ratio ratio-16x9">
-                    <iframe src="{{}}" title="YouTube video" allowfullscreen></iframe>
+            <h2><div class="bg-success text-white rounded p-2 pl-4">おすすめ動画</div></h2>
+                <div class="col-lg-4 col-md-6 px-1 mt-2">
+                    <div class="card mx-lg-4 mx-md-0">
+                        <a target="_blank" href="{{ video.video_url1 }}">
+                            <div class="card border-0">
+                        <img class="card-img-top" src="{{ video.video_thumbnail1 }}" alt="動画サムネイル">
+                                <div class="card-img-overlay">
+                                </div>
+                            </div>
+                        </a>
+                        <div class="card-body">
+                            <a target="_blank" href="{{ video.video_url1 }}">
+                                <h5 class="card-title text-ellipsis-2">{{ video.video_title1 }}</h5>
+                            </a>
+                        </div>
+                        <div class="d-flex flex-row flex-wrap flex-ie justify-content-between mb-2 mx-2">
+                            <small class="float-left text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar me-2" viewBox="0 0 16 16">
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                            </svg>{{ video.video_published_at1 }}</small>
+                            <small class="float-right text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill me-2" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                            </svg>{{ video.video_view_count1|intcomma }} 回視聴</small>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="ratio ratio-16x9">
-                    <iframe src="{{ item.video }}" title="YouTube video" allowfullscreen></iframe>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 px-1 mt-2">
+                    <div class='card h-100 mx-lg-4 mx-md-0'>
+                        <a target="_blank" href="{{ video.video_url2 }}">
+                            <div class="card border-0">
+                        <img class="card-img-top" src="{{ video.video_thumbnail2 }}" alt="動画サムネイル">
+                                <div class="card-img-overlay">
+                                </div>
+                            </div>
+                        </a>
+                        <div class="card-body">
+                            <a target="_blank" href="{{ video.video_url2 }}">
+                                <h5 class="card-title text-ellipsis-2">{{ video.video_title2 }}</h5>
+                            </a>
+                        </div>
+                        <div class="d-flex flex-row flex-wrap flex-ie justify-content-between mb-2 mx-2">
+                            <small class="float-left text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar me-2" viewBox="0 0 16 16">
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                            </svg>{{ video.video_published_at2 }}</small>
+                            <small class="float-right text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill me-2" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                            </svg>{{ video.video_view_count2|intcomma }} 回視聴</small>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="ratio ratio-16x9">
-                    <iframe src="{{ item.video }}" title="YouTube video" allowfullscreen></iframe>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 px-1 mt-2">
+                    <div class='card h-100 mx-lg-4 mx-md-0'>
+                        <a target="_blank" href="{{ video.video_url3 }}">
+                            <div class="card border-0">
+                        <img class="card-img-top" src="{{ video.video_thumbnail3 }}" alt="動画サムネイル">
+                                <div class="card-img-overlay">
+                                </div>
+                            </div>
+                        </a>
+                        <div class="card-body">
+                            <a target="_blank" href="{{ video.video_url3 }}">
+                                <h5 class="card-title text-ellipsis-2">{{ video.video_title3 }}</h5>
+                            </a>
+                        </div>
+                        <div class="d-flex flex-row flex-wrap flex-ie justify-content-between mb-2 mx-2">
+                            <small class="float-left text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar me-2" viewBox="0 0 16 16">
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                            </svg>{{ video.video_published_at3 }}</small>
+                            <small class="float-right text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill me-2" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                            </svg>{{ video.video_view_count3|intcomma }} 回視聴</small>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="ratio ratio-16x9">
-                    <iframe src="{{ item.video }}" title="YouTube video" allowfullscreen></iframe>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 px-1 mt-2">
+                    <div class='card h-100 mx-4'>
+                        <a target="_blank" href="{{ video.video_url4 }}">
+                            <div class="card border-0">
+                        <img class="card-img-top" src="{{ video.video_thumbnail4 }}" alt="動画サムネイル">
+                                <div class="card-img-overlay">
+                                </div>
+                            </div>
+                        </a>
+                        <div class="card-body">
+                            <a target="_blank" href="{{ video.video_url4 }}">
+                                <h5 class="card-title text-ellipsis-2">{{ video.video_title4}}</h5>
+                            </a>
+                        </div>
+                        <div class="d-flex flex-row flex-wrap flex-ie justify-content-between mb-2 mx-2">
+                            <small class="float-left text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar me-2" viewBox="0 0 16 16">
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                            </svg>{{ video.video_published_at4 }}</small>
+                            <small class="float-right text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill me-2" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                            </svg>{{ video.video_view_count4|intcomma }} 回視聴</small>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="ratio ratio-16x9">
-                    <iframe src="{{ item.video }}" title="YouTube video" allowfullscreen></iframe>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 px-1 mt-2">
+                    <div class='card h-100 mx-4'>
+                        <a target="_blank" href="{{ video.video_url5 }}">
+                            <div class="card border-0">
+                        <img class="card-img-top" src="{{ video.video_thumbnail5 }}" alt="動画サムネイル">
+                                <div class="card-img-overlay">
+                                </div>
+                            </div>
+                        </a>
+                        <div class="card-body">
+                            <a target="_blank" href="{{ video.video_url5 }}">
+                                <h5 class="card-title text-ellipsis-2">{{ video.video_title5 }}</h5>
+                            </a>
+                        </div>
+                        <div class="d-flex flex-row flex-wrap flex-ie justify-content-between mb-2 mx-2">
+                            <small class="float-left text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar me-2" viewBox="0 0 16 16">
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                            </svg>{{ video.video_published_at5 }}</small>
+                            <small class="float-right text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill me-2" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                            </svg>{{ video.video_view_count5|intcomma }} 回視聴</small>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="ratio ratio-16x9">
-                    <iframe src="{{ item.video }}" title="YouTube video" allowfullscreen></iframe>
+
+                <div class="col-lg-4 col-md-6 col-sm-12 px-1 mt-2">
+                    <div class='card h-100 mx-4'>
+                        <a target="_blank" href="{{ video.video_url6 }}">
+                            <div class="card border-0">
+                        <img class="card-img-top" src="{{ video.video_thumbnail6 }}" alt="動画サムネイル">
+                                <div class="card-img-overlay">
+                                </div>
+                            </div>
+                        </a>
+                        <div class="card-body">
+                            <a target="_blank" href="{{ video.video_url6 }}">
+                                <h5 class="card-title text-ellipsis-2">{{ video.video_title6 }}</h5>
+                            </a>
+                        </div>
+                        <div class="d-flex flex-row flex-wrap flex-ie justify-content-between mb-2 mx-2">
+                            <small class="float-left text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar me-2" viewBox="0 0 16 16">
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                            </svg>{{ video.video_published_at6 }}</small>
+                            <small class="float-right text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill me-2" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                            </svg>{{ video.video_view_count6|intcomma }} 回視聴</small>
+                        </div>
+                    </div>
                 </div>
             </div>
             <h2>グラフ</h2>
-            {% comment %} <img src="img\graph03_oresen01rei (1).png" alt="" class="img-thumbnail"> {% endcomment %}
-        </div>
+        </div>        {% comment %} <img src="img\graph03_oresen01rei (1).png" alt="" class="img-thumbnail"> {% endcomment %}
     </section>
-{% endfor %}
 {% endblock content %}
+
+{%block footer%}
+    <footer class="footer mt-auto py-3 bg-success">
+        <div class="container">
+            <div class="text-white my-2">ここには固定フッタのコンテンツを配置。</div>
+        </div>
+    </footer>
+{%endblock footer%}

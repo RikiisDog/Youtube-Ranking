@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import Test
+from .views import Ranking, DetailProfile
 
 app_name = 'youtubeapp'
 
 urlpatterns = [
-    path('index/', Test.as_view(), name='index'),
-    path('detail/<int:pk>', Test.as_view(), name='detail')
+    path('index/', Ranking.as_view(), name='index'),
+    path('detail/<int:pk>', DetailProfile.as_view(), name='detail')
 ]
