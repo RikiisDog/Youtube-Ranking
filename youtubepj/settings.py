@@ -6,7 +6,8 @@ import os
 env = environ.Env()
 env.read_env('.env')
 
-#Required active 'Mac OS'
+
+#Required 'Mac OS'
 if os.name == 'posix':
     import pymysql
     pymysql.install_as_MySQLdb()

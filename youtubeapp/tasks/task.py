@@ -3,7 +3,7 @@ from ..youtube.youtube_data_api import YoutubeApiClient
 from ..models import Channel, Video, Log
 
 #定期的にyoutube data apiよりデータを取得し、データベースのレコードを更新する
-#期間は6時間に1回とし、遅延許容範囲は60*60msとする
+#期間は12時間に1回とし、遅延許容範囲は60*60msとする
 def get_execution():
 
     #チャンネルIDを取得 -> list
@@ -18,9 +18,6 @@ def get_execution():
         object_list[cnt] = YoutubeApiClient(obj)
         channel = object_list[cnt].get_channel()
         video = object_list[cnt].get_video()
-
-        #チャンネルIDに一致するデータを検索
-        #search_obj = Channel.objects.get(channel_id=obj)
 
         #チャンネル更新
         Channel.objects.update_or_create(
@@ -84,7 +81,7 @@ def start():
     scheduler.add_job(
         get_execution,
         trigger='interval',
-        hours=6,
+        hours=12,
         misfire_grace_time=60*60
         )
 

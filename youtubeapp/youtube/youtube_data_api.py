@@ -37,11 +37,6 @@ class YoutubeApiClient():
         snippet = channel['snippet']
         statistics = channel['statistics']
 
-        #チャンネル開設日の書式変更
-        # date_iso = snippet['publishedAt']
-        # date_conv = datetime.strptime(date_iso, '%Y-%m-%dT%H:%M:%SZ')
-        # published_at = date_conv.strftime('%Y年%m月%d日')
-
         #チャンネルURL取得
         channel_url = f"https://www.youtube.com/channel/{channel['id']}"
 
@@ -88,11 +83,6 @@ class YoutubeApiClient():
         for i, item in enumerate(video_list['items']):
             snippet = item['snippet']
             statistics = item['statistics']
-
-            #動画アップロード日の書式変更
-            # date_iso = snippet['publishedAt']
-            # date_conv = datetime.strptime(date_iso, '%Y-%m-%dT%H:%M:%SZ')
-            # published_at = date_conv.strftime('%Y年%m月%d日')
 
             videos.append({
                 'title': snippet['title'],#動画タイトル
