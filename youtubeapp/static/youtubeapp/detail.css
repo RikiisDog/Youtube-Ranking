@@ -8,19 +8,8 @@
 body {
     background-color: rgb(247, 250, 241);
 }
-.contents {
-    background-color: rgb(255,255,255);
-    width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 100px;
-}
 
 span {
     display: inline-block;
     width:6em;
-}
-
-.float-right {
-    float:  right;               /* 要素を右に回り込ませる */
 }
