@@ -20,20 +20,20 @@
             </div>
             <div class="col-lg-8">
                 <div class='card h-100'>
-                <h2><a href= "{{ channel.channel_url }}">{{ channel.channel_name }}</a></h2>
-                <h4><span class="bg-success text-white text-center rounded me-2">登録者数</span>{{ channel.subscriber_count|intcomma }} 人</h4>
-                <h4><span class="bg-primary text-white text-center rounded me-2">総視聴回数</span>{{ channel.view_count|intcomma }} 回</h4>
-                <h4><span class="bg-warning text-white text-center rounded me-2">総動画本数</span>{{ channel.video_count|intcomma }} 本</h4>
-                <h4><span class="bg-danger text-white text-center rounded me-2">開設日</span>{{ channel.published_at }}</h4>
-                <h4><span><a href= "{{ channel.twitter_url }}">Twitter</a>
+                    <h2><a href= "{{ channel.channel_url }}">{{ channel.channel_name }}</a></h2>
+                    <h4><span class="bg-success text-white text-center rounded me-2">登録者数</span>{{ channel.subscriber_count|intcomma }} 人</h4>
+                    <h4><span class="bg-primary text-white text-center rounded me-2">総視聴回数</span>{{ channel.view_count|intcomma }} 回</h4>
+                    <h4><span class="bg-warning text-white text-center rounded me-2">総動画本数</span>{{ channel.video_count|intcomma }} 本</h4>
+                    <h4><span class="bg-danger text-white text-center rounded me-2">開設日</span>{{ channel.published_at }}</h4>
+                    <h4><span><a href= "{{ channel.twitter_url }}">Twitter</a>
                 </div>
             </div>
         </div>
         <p></p>
         <div class="row">
-            <h2><div class="bg-success text-white rounded p-2 pl-4">おすすめ動画</div></h2>
-                <div class="col-lg-4 col-md-6 px-1 mt-2">
-                    <div class="card mx-lg-4 mx-md-0">
+            <h4><div class="bg-success text-white rounded p-2 pl-4">おすすめ動画</div></h4>
+                <div class="col-lg-4 col-md-6 col-sm-12 px-1 mt-2">
+                    <div class="card h-100 mx-4">
                         <a target="_blank" href="{{ video.video_url1 }}">
                             <div class="card border-0">
                         <img ecoding='async' loding='lazy' class="card-img-top" src="{{ video.video_thumbnail1 }}" alt="動画サムネイル">
@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="col-lg-4 col-md-6 col-sm-12 px-1 mt-2">
-                    <div class='card h-100 mx-lg-4 mx-md-0'>
+                    <div class="card h-100 mx-4">
                         <a target="_blank" href="{{ video.video_url2 }}">
                             <div class="card border-0">
                         <img ecoding='async' loding='lazy' class="card-img-top" src="{{ video.video_thumbnail2 }}" alt="動画サムネイル">
@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="col-lg-4 col-md-6 col-sm-12 px-1 mt-2">
-                    <div class='card h-100 mx-lg-4 mx-md-0'>
+                    <div class='card h-100 mx-4'>
                         <a target="_blank" href="{{ video.video_url3 }}">
                             <div class="card border-0">
                         <img ecoding='async' loding='lazy' class="card-img-top" src="{{ video.video_thumbnail3 }}" alt="動画サムネイル">
