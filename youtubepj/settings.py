@@ -27,6 +27,7 @@ DEBUG = env.bool('DEBUG')
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 ADMIN_PATH = env('ADMIN_PATH')
+ALLOWD_ADMIN = env.list('ALLOWED_ADMIN')
 
 
 # Application definition
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'youtubepj.protect.AdminProtect'
 ]
 
 ROOT_URLCONF = 'youtubepj.urls'
