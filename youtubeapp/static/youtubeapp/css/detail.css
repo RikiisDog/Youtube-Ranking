@@ -13,3 +13,25 @@ span {
     display: inline-block;
     width:6em;
 }
+
+#id_name {
+    width: 320px;
+    height: 32px;
+}
+
+#id_message {
+width: 320px;
+height: 100px;
+}
+
+.page-link {
+    color: #198754;
+}
+
+a.page-link:hover {
+    color: #198754;
+}
+
+li.page-item.active .page-link {
+    border-color: #198754;
+}

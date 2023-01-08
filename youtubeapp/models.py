@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 GAME = (
     ('1', 'APEX LEGENDS'),
@@ -86,3 +87,17 @@ class Log(models.Model):
     class Meta:
         db_table = 'Log'
         verbose_name_plural = ('ログ')
+
+
+class Comment(models.Model):
+    name = models.CharField(max_length=20, default='名無しさん')
+    duedate = models.DateTimeField(default=timezone.now)
+    message = models.TextField(max_length=50)
+    channel = models.ForeignKey(Channel,on_delete=models.CASCADE,related_name='comment')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = 'comment'
+        verbose_name_plural = ('コメント')
