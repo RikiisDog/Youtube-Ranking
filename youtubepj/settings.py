@@ -26,6 +26,8 @@ DEBUG = env.bool('DEBUG')
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
+ADMIN_PATH = env('ADMIN_PATH')
+
 
 # Application definition
 INSTALLED_APPS = [
