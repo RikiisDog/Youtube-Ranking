@@ -59,7 +59,5 @@ class DetailProfile(View):
             print(form.channel)
             form.save()
             return redirect('youtubeapp:detail', pk=pk)
-        else:
-            print('未記入の項目があります')
 
         return render(request,'detail.html',{'form':form})
