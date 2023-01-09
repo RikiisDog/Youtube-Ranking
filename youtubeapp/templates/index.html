@@ -1,5 +1,52 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
 
-{%block content%}
-<p>{{ context }}</p>
-{%endblock content%}
+{% block customcss %}
+    <link rel='stylesheet' type='text/css' href="{% static '\youtubeapp\css\style.css' %}">
+{% endblock customcss %}
+
+{% block header %}
+    <nav class="navbar navbar-success bg-success mb-3">
+        <a href="{% url 'youtubeapp:index' %}" class="btn btn-success btn-lg"> YouTubeランキング</a>
+    </nav>
+{% endblock header %}
+
+{% block content %}
+    <div class = "container">
+        <h2>CRランキング</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <div class="row">
+                        <th scope="col">順位</th>
+                        <th scope="col" colspan="2">チャンネル名</th>
+                        <th scope="col">チャンネル登録者数</th>
+                        <th scope="col">ゲームカテゴリー</th>
+                    </div>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                {% for item in channel %}
+                    <th scope="row">{{ forloop.counter }}</th>
+                        <td width="60px"><img decoding='async' loding='lazy' src="{{ item.thumbnail }}" width="60px" height="60px" alt="画像が読み込めません"></td>
+                        <td><a href="{% url 'youtubeapp:detail' item.pk %}" class="widelink">{{ item.channel_name }}</a></td>
+                        <td>{{ item.subscriber_count|intcomma }} 人</td>
+                        <td>{{ item.get_category_display }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}
+
+{% block footer %}
+    <footer id="footer" class="footer pt-3 pb-1 bg-success " style="top: 0px;">
+        <div class="container">
+            <div class="copyright">
+                <p class="text-center text-white">by msanaori.</p>
+            </div>
+        </div>
+    </footer>
+{% endblock footer %}
